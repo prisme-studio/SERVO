@@ -32,7 +32,7 @@ public:
         Action: Relever le nombre de personnes.
         */
 
-        _state["BODY_COUNT_INT"] = (int)machine->arena()->count();
+        _state["BODY_COUNT_INT"] = static_cast<int>(machine->getAllBodyUID().size());
 		return true;
     }
 };
