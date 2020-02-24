@@ -2,7 +2,7 @@
 //  B-193.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef B_193_hpp
@@ -13,7 +13,6 @@
 #endif
 
 #include "../../Behaviour.hpp"
-#include <pb-common/Structs/Body.hpp>
 
 class B193: public Behaviour {
 public:

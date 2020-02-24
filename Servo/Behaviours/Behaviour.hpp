@@ -14,6 +14,8 @@
 
 #include "../main.hpp"
 
+#include <pb-common/Structs/Body.hpp>
+
 class Tree;
 class Output;
 struct Message;

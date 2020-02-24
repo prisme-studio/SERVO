@@ -2,7 +2,7 @@
 //  O-30.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef O_30_hpp
@@ -28,10 +28,10 @@ public:
 
     virtual bool isConditionValid(State &behaviourState) override {
         /*
-        Condition:
+        Condition: 
         */
 
-		_state["SUDDEN_MOVE_SPEED_STR"] = std::to_string(std::get<double>(behaviourState["SUDDEN_MOVE_SPEED_DOUBLE"]));
+        _state["SUDDEN_MOVE_SPEED_STR"] = std::to_string(std::get<double>(behaviourState["SUDDEN_MOVE_SPEED_DOUBLE"]));
 		_state["SUDDEN_MOVE_SPEED"] = behaviourState["SUDDEN_MOVE_SPEED_DOUBLE"];
 		return true;
     }

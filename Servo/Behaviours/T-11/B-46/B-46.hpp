@@ -1,29 +1,26 @@
 //
-//  B-74.hpp
+//  B-46.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-01.
 //
 
-#ifndef B_74_hpp
-#define B_74_hpp
-
-#ifdef B74
-#undef B74
-#endif
+#ifndef B_46_hpp
+#define B_46_hpp
 
 #include "../../Behaviour.hpp"
 
-class B74: public Behaviour {
+class B46: public Behaviour {
 public:
-    B74(): Behaviour(74,	// ID
-        5,		            // Tree ID
+    B46(): Behaviour(46,	// ID
+        11,		            // Tree ID
         1,	                // Is tree start ?
         0,	                // Force start ?
         {		            // Expected inputs
+            "BODY_COUNT",
         },
         {		            // Expected outputs
-            55,
+            78,
     }) {}
 
     virtual bool execute(Machine * machine) override {
@@ -31,9 +28,9 @@ public:
         Action: 
         */
 
-            return true;
-    }
+                    yo
+            }
 };
 
 
-#endif /* B_74_hpp */
+#endif /* B_46_hpp */

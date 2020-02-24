@@ -2,7 +2,7 @@
 //  B-48.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef B_48_hpp

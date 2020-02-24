@@ -2,7 +2,7 @@
 //  O-71.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef O_71_hpp
@@ -27,10 +27,10 @@ public:
 
     virtual bool isConditionValid(State &behaviourState) override {
         /*
-        Condition: Un seul mouvement brusque est détecté.
+        Condition: Un unique mouvement brusque est détecté.
         */
 
-		return std::get<int>(behaviourState["MOVING_BODIES_COUNT_INT"]) == 1;
+        return std::get<int>(behaviourState["MOVING_BODIES_COUNT_INT"]) == 1;
     }
 };
 

@@ -2,7 +2,7 @@
 //  O-127.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef O_127_hpp
@@ -23,12 +23,12 @@ public:
             "TOTAL_BODIES_COUNT",
         },
         {		                    // Captions
-            "Until now, I have counted {TOTAL_BODIES_COUNT_STR} person in the entire room.",
+            "Until now, I have counted just one person in the entire room.",
         }) {}
 
     virtual bool isConditionValid(State &behaviourState) override {
         /*
-        Condition: 
+        Condition: Une seule personne détecté
         */
 
         _state["TOTAL_BODIES_COUNT"] = behaviourState["TOTAL_BODIES_COUNT_INT"];

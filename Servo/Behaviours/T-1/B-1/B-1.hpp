@@ -2,7 +2,7 @@
 //  B-1.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef B_1_hpp
@@ -24,7 +24,7 @@ public:
         },
         {		            // Expected outputs
             1,
-			9999,
+            214,
     }) {}
 
     virtual bool execute(Machine * machine) override {

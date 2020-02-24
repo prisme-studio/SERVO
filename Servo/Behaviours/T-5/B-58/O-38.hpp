@@ -2,7 +2,7 @@
 //  O-38.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef O_38_hpp
@@ -16,7 +16,7 @@ public:
     O38(): Output(38,	            // Output ID
         false,	                    // Is tree end ?
         60,	                        // Next Behaviour ID
-        1,	            // Is delayed
+        true,	            // Is delayed
         10,		// Delay value (seconds)
         2,		// Delay variance (seconds)
         {		                    // Output values

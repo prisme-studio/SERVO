@@ -2,7 +2,7 @@
 //  B-91.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef B_91_hpp
@@ -24,8 +24,8 @@ public:
         },
         {		            // Expected outputs
             71,
-			9998,
             72,
+            215,
     }) {}
 
     virtual bool execute(Machine * machine) override {

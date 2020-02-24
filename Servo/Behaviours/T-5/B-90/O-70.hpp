@@ -2,7 +2,7 @@
 //  O-70.hpp
 //  Talkers
 //
-//  Created by Valentin Dufois on 2020-02-03.
+//  Created by Valentin Dufois on 2020-02-24.
 //
 
 #ifndef O_70_hpp
@@ -16,7 +16,7 @@ public:
     O70(): Output(70,	            // Output ID
         false,	                    // Is tree end ?
         91,	                        // Next Behaviour ID
-        1,	            // Is delayed
+        true,	            // Is delayed
         10,		// Delay value (seconds)
         2,		// Delay variance (seconds)
         {		                    // Output values
