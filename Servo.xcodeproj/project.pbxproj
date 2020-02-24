@@ -418,6 +418,7 @@
 		397B3F6E2400988C005AD8A9 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../../../../../usr/local/Cellar/protobuf/3.11.4/lib/libprotobuf.a; sourceTree = "<group>"; };
 		397B3F702400989D005AD8A9 /* libnetwork.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnetwork.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		397B3F73240098A9005AD8A9 /* Servo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Servo.entitlements; sourceTree = "<group>"; };
+		398C1BD92404653900BE7168 /* ProximityWatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProximityWatcher.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,12 +474,13 @@
 			isa = PBXGroup;
 			children = (
 				397B3D3924009498005AD8A9 /* ClosePeopleWatcher.hpp */,
+				398C1BD92404653900BE7168 /* ProximityWatcher.hpp */,
 				397B3D3A24009498005AD8A9 /* Event.hpp */,
-				397B3D3B24009498005AD8A9 /* Watcher.hpp */,
 				397B3D3C24009498005AD8A9 /* NewBodyWatcher.hpp */,
 				397B3D3D24009498005AD8A9 /* NoMovementsWatcher.hpp */,
 				397B3D3E24009498005AD8A9 /* RandomWatcher.hpp */,
 				397B3D3F24009498005AD8A9 /* SuddenMoveWatcher.hpp */,
+				397B3D3B24009498005AD8A9 /* Watcher.hpp */,
 			);
 			path = Watchers;
 			sourceTree = "<group>";
@@ -486,24 +488,24 @@
 		397B3D4224009499005AD8A9 /* Behaviours */ = {
 			isa = PBXGroup;
 			children = (
-				397B3D4324009499005AD8A9 /* getBehaviour.cpp */,
-				397B3D4424009499005AD8A9 /* Behaviour.hpp */,
-				397B3D4524009499005AD8A9 /* T-14 */,
-				397B3D8024009499005AD8A9 /* T-13 */,
-				397B3D9624009499005AD8A9 /* T-6 */,
-				397B3DEF24009499005AD8A9 /* T-1 */,
-				397B3E1B24009499005AD8A9 /* Output.cpp */,
-				397B3E1C24009499005AD8A9 /* T-7 */,
-				397B3E3324009499005AD8A9 /* getOutput.cpp */,
-				397B3E3424009499005AD8A9 /* T-9 */,
 				397B3E6124009499005AD8A9 /* Behaviour.cpp */,
-				397B3E6224009499005AD8A9 /* Output.hpp */,
-				397B3E6324009499005AD8A9 /* T-11 */,
-				397B3E9124009499005AD8A9 /* T-2 */,
-				397B3E9E24009499005AD8A9 /* T-5 */,
-				397B3EE724009499005AD8A9 /* T-4 */,
-				397B3EEF24009499005AD8A9 /* T-3 */,
+				397B3D4424009499005AD8A9 /* Behaviour.hpp */,
+				397B3D4324009499005AD8A9 /* getBehaviour.cpp */,
+				397B3E3324009499005AD8A9 /* getOutput.cpp */,
 				397B3F442400949A005AD8A9 /* Message.hpp */,
+				397B3E1B24009499005AD8A9 /* Output.cpp */,
+				397B3E6224009499005AD8A9 /* Output.hpp */,
+				397B3DEF24009499005AD8A9 /* T-1 */,
+				397B3E9124009499005AD8A9 /* T-2 */,
+				397B3EEF24009499005AD8A9 /* T-3 */,
+				397B3EE724009499005AD8A9 /* T-4 */,
+				397B3E9E24009499005AD8A9 /* T-5 */,
+				397B3D9624009499005AD8A9 /* T-6 */,
+				397B3E1C24009499005AD8A9 /* T-7 */,
+				397B3E3424009499005AD8A9 /* T-9 */,
+				397B3E6324009499005AD8A9 /* T-11 */,
+				397B3D8024009499005AD8A9 /* T-13 */,
+				397B3D4524009499005AD8A9 /* T-14 */,
 			);
 			path = Behaviours;
 			sourceTree = "<group>";
@@ -2219,12 +2221,12 @@
 		397B3F512400949A005AD8A9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				397B3F522400949A005AD8A9 /* Machine.hpp */,
 				397B3F532400949A005AD8A9 /* Core.cpp */,
+				397B3F572400949A005AD8A9 /* Core.hpp */,
+				397B3F562400949A005AD8A9 /* Machine.cpp */,
+				397B3F522400949A005AD8A9 /* Machine.hpp */,
 				397B3F542400949A005AD8A9 /* MachineDelegate.hpp */,
 				397B3F552400949A005AD8A9 /* Tree.hpp */,
-				397B3F562400949A005AD8A9 /* Machine.cpp */,
-				397B3F572400949A005AD8A9 /* Core.hpp */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2269,7 +2271,7 @@
 		397B3D252400947F005AD8A9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Prisme;
 				TargetAttributes = {
 					397B3D2C2400947F005AD8A9 = {
@@ -2436,6 +2438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Servo/Servo.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ993GM677;
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -2452,6 +2455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Servo/Servo.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ993GM677;
 				ENABLE_HARDENED_RUNTIME = NO;

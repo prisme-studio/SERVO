@@ -12,7 +12,9 @@
 
 int main(int argc, const char * argv[]) {
 
-	po::options_description desc("Talkers");
+	// Set app parameters
+	po::options_description desc("Servo");
+	desc.add_options()("master", po::value<std::string>(), "IP of a PB-Master to connect to");
 	flags::parse(argc, argv, desc);
 
 	Core core;

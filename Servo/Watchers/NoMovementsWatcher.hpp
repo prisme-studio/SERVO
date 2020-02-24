@@ -8,21 +8,25 @@
 #ifndef NoMovementsWatcher_h
 #define NoMovementsWatcher_h
 
-#include <pb-common/Utils/Arena.hpp>
 #include "Watcher.hpp"
+#include "../Core/Machine.hpp"
 
 class NoMovementsWatcher: public Watcher {
 public:
-	NoMovementsWatcher(const talkers::BehaviourID &behaviour, const double &threshold, const double &triggerLuck):
-	Watcher(behaviour, triggerLuck), _threshold(threshold) {}
+	NoMovementsWatcher( Machine * aMachine,
+					   const talkers::BehaviourID &behaviour,
+					   const double &threshold,
+					   const double &triggerLuck):
+	Watcher(aMachine, behaviour, triggerLuck),
+	_threshold(threshold) {}
 
-	virtual void watch(pb::Arena * arena) override {
-		if(arena->count() == 0) {
+	virtual void watch() override {
+		if(_machine->arena()->count() == 0) {
 			_foundEvent = false;
 			return;
 		}
 
-		_foundEvent = arena->averageMoveSpeed() < _threshold;
+		_foundEvent = _machine->arena()->averageMoveSpeed() < _threshold;
 	}
 
 	virtual Event getEvent() override {

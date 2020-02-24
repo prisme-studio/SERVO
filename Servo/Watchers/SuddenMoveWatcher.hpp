@@ -15,14 +15,18 @@
 
 class SuddenMoveWatcher: public Watcher {
 public:
-	SuddenMoveWatcher(const talkers::BehaviourID &behaviour, const double &threshold, const double &triggerLuck):
-	Watcher(behaviour, triggerLuck), _threshold(threshold) {}
+	SuddenMoveWatcher( Machine * aMachine,
+					  const talkers::BehaviourID &behaviour,
+					  const double &threshold,
+					  const double &triggerLuck):
+	Watcher(aMachine, behaviour, triggerLuck),
+	_threshold(threshold) {}
 
-	virtual void watch(pb::Arena * arena) override {
+	virtual void watch() override {
 		pb::Body * body;
 		double speed;
 
-		std::tie(body, speed) = arena->mostActiveBody();
+		std::tie(body, speed) = _machine->arena()->mostActiveBody();
 
 		if(body == nullptr || speed < _threshold) {
 			_foundEvent = false;

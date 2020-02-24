@@ -9,6 +9,7 @@
 #include <ctime>
 
 #include <common/thread.hpp>
+#include <common/flags.hpp>
 
 #include "Core.hpp"
 #include "../Behaviours/Message.hpp"
@@ -18,7 +19,7 @@ void Core::init() {
 	thread::setName("prisme.talkers.main");
 
 	// MARK: Network
-	_PBReceiver.open();
+	_PBReceiver.open(flags::args.count("master") ? flags::args["master"].as<std::string>() : "");
 
 	_receiversServer.setEmissionFormat(network::SocketFormat::json);
 	_receiversServer.open();

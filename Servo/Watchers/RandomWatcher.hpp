@@ -12,12 +12,14 @@
 
 class RandomWatcher: public Watcher {
 public:
-	RandomWatcher(const talkers::BehaviourID &behaviour, const double &triggerLuck):
-	Watcher(behaviour, triggerLuck) {
+	RandomWatcher( Machine * aMachine,
+				  const talkers::BehaviourID &behaviour,
+				  const double &triggerLuck):
+	Watcher(aMachine, behaviour, triggerLuck) {
 		_foundEvent = true;
 	}
 
-	virtual void watch(pb::Arena *) override {
+	virtual void watch() override {
 		return;
 	}
 

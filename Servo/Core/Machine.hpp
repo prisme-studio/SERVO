@@ -13,23 +13,20 @@
 #include <deque>
 
 #include <pb-common/messages.hpp>
+#include <pb-common/utils/Arena.hpp>
 
+#include "../Watchers/Event.hpp"
 #include "Tree.hpp"
-// Watchers
-#include "../Watchers/ClosePeopleWatcher.hpp"
-#include "../Watchers/NoMovementsWatcher.hpp"
-#include "../Watchers/RandomWatcher.hpp"
-#include "../Watchers/SuddenMoveWatcher.hpp"
 
 struct Message;
 class Behaviour;
 class MachineDelegate;
+class Watcher;
 
 class Machine {
 public:
 
-	Machine(pb::Arena arena):
-	_arena(arena) {}
+	Machine(pb::Arena arena, const pb::maths::vec2 &position);
 
 	std::string label;
 
@@ -107,19 +104,7 @@ private:
 	// MARK: - Watchers
 
 	/// All the watchers
-	std::array<Watcher *, 8> _watchers = {
-		new NoMovementsWatcher(1, 100, 0.01),		// T-01
-		new ClosePeopleWatcher(11, 8000, 0.1),		// T-02
-		new SuddenMoveWatcher(18, 5000, 0.1),		// T-03
-//		new NewBodyWatcher(22, 0.1),				// T-04
-		new RandomWatcher(50, 0.01),				// T-05
-		new RandomWatcher(99, 0.01),				// T-06
-//		new ProximityWatcher(128, 0.01),			// T-07
-		new RandomWatcher(139, 0.01),			// T-09
-		new RandomWatcher(158, 0.01),			// T-11
-		new ClosePeopleWatcher(177, 8000, 0.01),	// T-13
-
-	};
+	std::array<Watcher *, 10> _watchers;
 };
 
 #endif /* Machine_hpp */

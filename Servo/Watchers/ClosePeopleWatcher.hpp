@@ -8,7 +8,7 @@
 #ifndef ClosePeopleWatcher_h
 #define ClosePeopleWatcher_h
 
-#include <pb-common/Utils/Arena.hpp>
+#include "../Core/Machine.hpp"
 #include <pb-common/Structs/Body.hpp>
 
 #include "Watcher.hpp"
@@ -16,11 +16,15 @@
 /// This watchers looks for people close to each others. The triggering distance is specified in the constructor
 class ClosePeopleWatcher: public Watcher {
 public:
-	ClosePeopleWatcher(const talkers::BehaviourID &behaviour, const double &threshold, const double &triggerLuck):
-	Watcher(behaviour, triggerLuck), _threshold(threshold) {}
+	ClosePeopleWatcher( Machine * aMachine,
+					   const talkers::BehaviourID &behaviour,
+					   const double &threshold,
+					   const double &triggerLuck):
+	Watcher(aMachine, behaviour, triggerLuck),
+	_threshold(threshold) {}
 
-	virtual void watch(pb::Arena * arena) override {
-		std::vector<pb::Body *> bodies = arena->getSubset();
+	virtual void watch() override {
+		std::vector<pb::Body *> bodies = _machine->arena()->getSubset();
 
 		/// If there is less than two people, this watcher cannot find anything
 		if(bodies.size() < 2) {

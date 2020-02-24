@@ -13,6 +13,7 @@
 #endif
 
 #include "../../Behaviour.hpp"
+#include <pb-common/Structs/Body.hpp>
 
 class B193: public Behaviour {
 public:

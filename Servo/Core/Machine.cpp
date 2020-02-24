@@ -12,11 +12,34 @@
 #include "Machine.hpp"
 #include "MachineDelegate.hpp"
 
+// Watchers
+#include "../Watchers/ClosePeopleWatcher.hpp"
+#include "../Watchers/NewBodyWatcher.hpp"
+#include "../Watchers/ProximityWatcher.hpp"
+#include "../Watchers/NoMovementsWatcher.hpp"
+#include "../Watchers/RandomWatcher.hpp"
+#include "../Watchers/SuddenMoveWatcher.hpp"
+
 #include <pb-common/messages.hpp>
 
 #include "../Behaviours/Output.hpp"
 #include "../Behaviours/Behaviour.hpp"
 #include "../Behaviours/Message.hpp"
+
+Machine::Machine(pb::Arena arena, const pb::maths::vec2 &position):
+	_arena(arena),
+	_watchers({
+		new NoMovementsWatcher(this, 1, 100, 0.01),				// T-01
+		new ClosePeopleWatcher(this, 11, 8000, 0.1),				// T-02
+		new SuddenMoveWatcher(this, 18, 5000, 0.1),				// T-03
+		new NewBodyWatcher(this, 22, 0.1),						// T-04
+		new RandomWatcher(this, 50, 0.01),						// T-05
+		new RandomWatcher(this, 99, 0.01),						// T-06
+		new ProximityWatcher(this, 128, position, 1000, 0.01),		// T-07
+		new RandomWatcher(this, 139, 0.01),						// T-09
+		new RandomWatcher(this, 158, 0.01),						// T-11
+		new ClosePeopleWatcher(this, 177, 8000, 0.01),				// T-13
+	}) {}
 
 // MARK: - Inputs
 
@@ -140,7 +163,7 @@ bool Machine::executeWatchers() {
 
 	// Execute each watchers
 	for(Watcher * watcher: _watchers) {
-		watcher->watch(&_arena);
+		watcher->watch();
 
 		if(!watcher->hasFoundEvent())
 			continue;

@@ -8,26 +8,27 @@
 #ifndef NewBodyWatcher_h
 #define NewBodyWatcher_h
 
-#include "../../Common/Utils/Arena.hpp"
+#include "../Core/Machine.hpp"
 #include "Watcher.hpp"
 
 class NewBodyWatcher: public Watcher {
 public:
-	NewBodyWatcher(const talkers::BehaviourID &behaviour, const double &triggerLuck):
-	Watcher(behaviour, triggerLuck) {}
+	NewBodyWatcher( Machine * aMachine,
+				   const talkers::BehaviourID &behaviour,
+				   const double &triggerLuck):
+	Watcher(aMachine, behaviour, triggerLuck) {}
 
-	virtual void watch(const pb::Arena * arena) override {
-		if(arena->count() == 0) {
-			_foundEvent = false;
-			return;
-		}
+	virtual void watch() override {
+		size_t bodyCount = _machine->receptionHistory().size();
 
-		_foundEvent = arena->averageMoveSpeed() < _threshold;
+		_foundEvent = bodyCount > _lastCount;
+
+		_lastCount = bodyCount;
 	}
 
 	virtual Event getEvent() override {
 		Event event;
-		event.name = "NO_MOVEMENTS";
+		event.name = "NEW_BODY";
 		event.behaviour = _behaviour;
 
 		return event;
@@ -35,7 +36,7 @@ public:
 
 private:
 
-	double _threshold;
+	size_t _lastCount = 0;
 };
 
 #endif /* NewBodyWatcher_h */
