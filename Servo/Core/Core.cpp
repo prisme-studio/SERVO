@@ -23,6 +23,7 @@ void Core::init() {
 
 	_receiversServer.setEmissionFormat(network::SocketFormat::json);
 	_receiversServer.open();
+	_receiversServer.delegate = this;
 
 	// MARK: Machines
 	_machineA.label = "A";
@@ -82,13 +83,13 @@ Core::~Core() {
 // MARK: - Machine Delegate
 
 void Core::machineDidUpdate(Machine * aMachine) {
-	::messages::Talkers machineMessage = aMachine->getOutputMessage();
+	::messages::Talkers * machineMessage = aMachine->getOutputMessage();
 
 	// Fill in message content
-	machineMessage.set_type("update");
+	machineMessage->set_type("update");
 
 	// Send
-	_receiversServer.sendToAll(&machineMessage);
+	_receiversServer.sendToAll(machineMessage);
 }
 
 void Core::machineSaysSomething(Machine * aMachine, const std::string &caption) {
@@ -97,14 +98,14 @@ void Core::machineSaysSomething(Machine * aMachine, const std::string &caption) 
 	else
 		_machineA.storeCaption(caption);
 
-	::messages::Talkers machineMessage = aMachine->getOutputMessage();
+	::messages::Talkers * machineMessage = aMachine->getOutputMessage();
 
 	// Fill in message content
-	machineMessage.set_type("caption");
-	machineMessage.set_caption(caption);
+	machineMessage->set_type("caption");
+	machineMessage->set_caption(caption);
 
 	// Send
-	_receiversServer.sendToAll(&machineMessage);
+	_receiversServer.sendToAll(machineMessage);
 }
 
 void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
@@ -122,15 +123,19 @@ void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
 	_nextMessage = message;
 
 	// Send the event
-	::messages::Talkers machineMessage = aMachine->getOutputMessage();
+	::messages::Talkers * machineMessage = aMachine->getOutputMessage();
 
 	// Fill in message content
-	machineMessage.set_type("event");
-	machineMessage.set_event(event.name);
+	machineMessage->set_type("event");
+	machineMessage->set_event(event.name);
 
-	_receiversServer.sendToAll(&machineMessage);
+	_receiversServer.sendToAll(machineMessage);
 
 	_cv.notify_all();
+}
+
+void Core::serverDidSendToAll(BaseServer *, const protobuf::Message * message) {
+	delete message;
 }
 
 void Core::watchersThread() {

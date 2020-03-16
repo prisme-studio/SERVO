@@ -13,7 +13,7 @@
 #include <atomic>
 #include <condition_variable>
 
-#include <network/Server/Server.hpp>
+#include <network/Server.hpp>
 
 #include <pb-common/Utils/PBReceiver.hpp>
 #include <pb-common/common.hpp>
@@ -22,7 +22,7 @@
 #include "MachineDelegate.hpp"
 #include "../Behaviours/Message.hpp"
 
-class Core: public MachineDelegate {
+class Core: public MachineDelegate, public network::ServerDelegate {
 	// MARK: - Lifecycle
 public:
 
@@ -70,6 +70,8 @@ private:
 	pb::PBReceiver _PBReceiver;
 
 	network::Server<network::messages::Datagram> _receiversServer;
+
+	virtual void serverDidSendToAll(BaseServer *, const protobuf::Message *) override;
 
 	// MARK: Machines
 

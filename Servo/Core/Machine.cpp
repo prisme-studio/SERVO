@@ -87,14 +87,14 @@ Message * Machine::onMessage(Message * message) {
 	}
 
 	if(!behaviour->importMessage(message)) {
-		delete behaviour;
 		onError("Error while importing message on behaviour " + std::to_string(behaviour->id));
+		delete behaviour;
 		return nullptr;
 	}
 
 	if(!behaviour->execute(this)) {
-		delete behaviour;
 		onError("Error while executing behaviour " + std::to_string(behaviour->id));
+		delete behaviour;
 		return nullptr;
 	}
 
@@ -136,17 +136,17 @@ void Machine::saySomething(const std::string &caption, const double &aDelay) {
 	delegate->machineSaysSomething(this, caption);
 }
 
-messages::Talkers Machine::getOutputMessage() {
-	messages::Talkers message;
+messages::Talkers * Machine::getOutputMessage() {
+	messages::Talkers * message = new messages::Talkers();
 
 	// Set label
-	message.set_label(this->label);
+	message->set_label(this->label);
 
 	// Add the machine state
-	message.set_bodycount((int)_arena.count());
-	message.set_averageactivity(_arena.averageMoveSpeed());
-	message.set_maximumactivity(std::get<1>(_arena.mostActiveBody()));
-	message.set_tree(_tree != nullptr);
+	message->set_bodycount((int)_arena.count());
+	message->set_averageactivity(_arena.averageMoveSpeed());
+	message->set_maximumactivity(std::get<1>(_arena.mostActiveBody()));
+	message->set_tree(_tree != nullptr);
 
 	return message;
 }

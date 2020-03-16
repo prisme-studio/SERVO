@@ -70,7 +70,7 @@ public:
 		return _bodyUIDHistory;
 	}
 
-	::messages::Talkers getOutputMessage();
+	::messages::Talkers * getOutputMessage();
 
 	// MARK: - Watchers
 
